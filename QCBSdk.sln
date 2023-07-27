@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QCBSdk", "QCBSdk\QCBSdk.csproj", "{29D3577D-FC06-4CCF-9F00-364153231E31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QBot", "QBot\QBot.csproj", "{32DD86AD-5C4B-416A-B083-83A4004FF804}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29D3577D-FC06-4CCF-9F00-364153231E31} = {29D3577D-FC06-4CCF-9F00-364153231E31}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29D3577D-FC06-4CCF-9F00-364153231E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D3577D-FC06-4CCF-9F00-364153231E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D3577D-FC06-4CCF-9F00-364153231E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D3577D-FC06-4CCF-9F00-364153231E31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32DD86AD-5C4B-416A-B083-83A4004FF804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32DD86AD-5C4B-416A-B083-83A4004FF804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32DD86AD-5C4B-416A-B083-83A4004FF804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32DD86AD-5C4B-416A-B083-83A4004FF804}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECD9F9C7-AD05-448C-9C66-D3D44CC08BBA}
+	EndGlobalSection
+EndGlobal
