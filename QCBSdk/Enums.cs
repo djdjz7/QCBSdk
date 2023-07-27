@@ -63,5 +63,18 @@ namespace QCBSdk
             1	所有人
             2	群主管理员+指定成员，可使用 修改子频道权限接口 指定成员*/
         }
+
+        public enum Opcode
+        {
+            Dispatch = 0,
+            Heartbeat = 1,
+            Identity = 2,
+            Resume = 6,
+            Reconnect = 7,
+            InvalidSession = 9,
+            Hello = 10,
+            HeartbeatACK = 11,
+            HttpCallbackACK = 12,
+        }
     }
 }
