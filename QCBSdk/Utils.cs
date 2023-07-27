@@ -15,4 +15,15 @@ namespace QCBSdk
             return string.Join('_', pascalSplittingRegex.Split(name)).ToLower();
         }
     }
+
+    public static class Utils
+    {
+        public static byte[] ConcatByteArray(byte[] array1, byte[] array2)
+        {
+            var result = new byte[array1.Length + array2.Length];
+            array1.CopyTo(result, 0);
+            array2.CopyTo(result, array1.Length);
+            return result;
+        }
+    }
 }

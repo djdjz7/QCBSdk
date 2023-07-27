@@ -20,7 +20,6 @@ namespace QBot
             var botClient = new QCBClient(BotAppId, BotToken, BotSecret, true);
             while (true)
             {
-                // Console.WriteLine(botClient.clientWebSocket.CloseStatusDescription);
                 Console.WriteLine(botClient.latestS);
                 await Task.Delay(10000);
             }

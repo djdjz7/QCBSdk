@@ -10,6 +10,8 @@ using static QCBSdk.BasicObjects;
 using static QCBSdk.RequestTypes;
 using static QCBSdk.ResponseTypes;
 using static QCBSdk.Url;
+using static QCBSdk.Utils;
+using static QCBSdk.Enums;
 namespace QCBSdk
 {
     public class QCBClient
@@ -94,7 +96,7 @@ namespace QCBSdk
             }
         }
 
-        private void WebSocketMessageListener(object? obj)
+        private async void WebSocketMessageListener(object? obj)
         {
             
             while (true)
@@ -119,6 +121,28 @@ namespace QCBSdk
 
                     Console.WriteLine(DateTime.Now + "\n" + content);
                     var message = JsonSerializer.Deserialize<WebSocketMessage>(content);
+                    switch (message.op)
+                    {
+                        case Opcode.Dispatch:
+                            break;
+                        case Opcode.Identity:
+                            break;
+                        case Opcode.Resume:
+                            break;
+                        case Opcode.Reconnect:
+                            await Reconnect();
+                            break;
+                        case Opcode.InvalidSession:
+                            break;
+                        case Opcode.Hello:
+                            break;
+                        case Opcode.HeartbeatACK:
+                            break;
+                        case Opcode.HttpCallbackACK:
+                            break;
+                        default:
+                            break;
+                    }
 
                     if (message is not null && message.s is not null)
                         latestS = message.s;
@@ -127,33 +151,43 @@ namespace QCBSdk
                 if (clientWebSocket.State == WebSocketState.Closed)
                 {
                     Console.WriteLine($"{DateTime.Now}: WEBSOCKET CLOSED");
-                    clientWebSocket.ConnectAsync(new Uri(gateway), CancellationToken.None).Wait();
                     
-                    var byteArray = new byte[1024];
-                    clientWebSocket.ReceiveAsync(new ArraySegment<byte>(byteArray), CancellationToken.None).Wait();
-                    string connectResponseString = Encoding.UTF8.GetString(byteArray).TrimEnd('\0');
-                    Console.WriteLine(connectResponseString);
-                    var connectResponseMessage = JsonSerializer.Deserialize<WebSocketMessage>(connectResponseString);
-                    int interval = ((JsonElement)connectResponseMessage.d).Deserialize<ConnectResponseD>().heartbeat_interval;
-                    heartbeatTimer.Dispose();
-                    heartbeatTimer = new Timer(Heartbeat, null, 0, interval);
-
-                    var resumeMessage = new
-                    {
-                        op = 6,
-                        d = new
-                        {
-                            token = $"{appId}.{token}",
-                            session_id = sessionId,
-                            seq = latestS,
-                        }
-                    };
-
-                    string resumeMessageString = JsonSerializer.Serialize(resumeMessage);
-                    byte[] resumeMessageBytes = Encoding.UTF8.GetBytes(resumeMessageString);
-                    clientWebSocket.SendAsync(new ArraySegment<byte>(resumeMessageBytes), WebSocketMessageType.Text, true, CancellationToken.None).Wait();
                 }
             }
+        }
+        public async Task Reconnect()
+        {
+            if(clientWebSocket.State != WebSocketState.Closed)
+            {
+                await clientWebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+            }
+            clientWebSocket.Dispose();
+            clientWebSocket = new ClientWebSocket();
+            clientWebSocket.ConnectAsync(new Uri(gateway), CancellationToken.None).Wait();
+
+            var byteArray = new byte[1024];
+            clientWebSocket.ReceiveAsync(new ArraySegment<byte>(byteArray), CancellationToken.None).Wait();
+            string connectResponseString = Encoding.UTF8.GetString(byteArray).TrimEnd('\0');
+            Console.WriteLine(connectResponseString);
+            var connectResponseMessage = JsonSerializer.Deserialize<WebSocketMessage>(connectResponseString);
+            int interval = ((JsonElement)connectResponseMessage.d).Deserialize<ConnectResponseD>().heartbeat_interval;
+            heartbeatTimer.Dispose();
+            heartbeatTimer = new Timer(Heartbeat, null, 0, interval);
+
+            var resumeMessage = new
+            {
+                op = 6,
+                d = new
+                {
+                    token = $"{appId}.{token}",
+                    session_id = sessionId,
+                    seq = latestS,
+                }
+            };
+
+            string resumeMessageString = JsonSerializer.Serialize(resumeMessage);
+            byte[] resumeMessageBytes = Encoding.UTF8.GetBytes(resumeMessageString);
+            clientWebSocket.SendAsync(new ArraySegment<byte>(resumeMessageBytes), WebSocketMessageType.Text, true, CancellationToken.None).Wait();
         }
         public async Task<User?> GetBotDetailsAsync()
         {
@@ -202,12 +236,5 @@ namespace QCBSdk
             return response?.Url;
         }
 
-        public byte[] ConcatByteArray(byte[] array1, byte[] array2)
-        {
-            var result = new byte[array1.Length + array2.Length];
-            array1.CopyTo(result, 0);
-            array2.CopyTo(result, array1.Length);
-            return result;
-        }
     }
 }

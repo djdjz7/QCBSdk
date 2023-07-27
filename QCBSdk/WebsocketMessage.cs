@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static QCBSdk.BasicObjects;
+using static QCBSdk.Enums;
 
 namespace QCBSdk
 {
     public class WebSocketMessage
     {
-        public int op { get; set; }
+        public Opcode op { get; set; }
         public object d { get; set; }
         public int? s { get; set; }
         public string t { get; set; }
