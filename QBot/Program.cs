@@ -1,6 +1,6 @@
 ﻿using QCBSdk;
 using QCBSdk.Types;
-using static QBot.Secrets;
+//using static QBot.Secrets;
 
 namespace QBot
 {
@@ -8,6 +8,7 @@ namespace QBot
     {
         static async Task Main(string[] args)
         {
+            /*
             var botClient = new QCBClient(BotAppId, BotToken, BotSecret, true);
             await botClient.InitializeAsync();
 
@@ -22,7 +23,7 @@ namespace QBot
             {
                 Console.WriteLine(botClient.latestS);
                 await Task.Delay(10000);
-            }
+            }*/
 
         }
     }
