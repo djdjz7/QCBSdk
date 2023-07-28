@@ -1,15 +1,16 @@
-﻿using System.Net.Http.Json;
+﻿using QCBSdk.Types;
+using System.Net.Http.Json;
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
-using static QCBSdk.BasicObjects;
 using static QCBSdk.Enums;
-using static QCBSdk.RequestTypes;
-using static QCBSdk.ResponseTypes;
+using static QCBSdk.Types.RequestTypes;
+using static QCBSdk.Types.ResponseTypes;
 using static QCBSdk.Url;
 using static QCBSdk.Utils;
+
 namespace QCBSdk
 {
     public class QCBClient
@@ -25,7 +26,8 @@ namespace QCBSdk
         private JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
         {
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-            PropertyNamingPolicy = new SnakeCaseNamingPolicy(),
+            //PropertyNamingPolicy = new SnakeCaseNamingPolicy(),
+            PropertyNamingPolicy = new JsonSnakeCaseLowerNamingPolicy(),
             DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         };
         public delegate void MessageEventHandler(object sender, string data);
@@ -268,9 +270,12 @@ namespace QCBSdk
         /// <param name="guildId">子频道的父频道 ID</param>
         /// <param name="createChannelRequest">携带的请求</param>
         /// <returns>一个 <see cref="Channel"/> 对象，表明新创建的子频道的详情</returns>
+        /// <exception cref="Exception"></exception>
         public async Task<Channel?> CreateChannelAsync(string guildId, CreateChannelRequest createChannelRequest)
         {
             var response = await httpClient.PostAsJsonAsync($"/guilds/{guildId}/channels", createChannelRequest, jsonSerializerOptions);
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"创建子频道出错，其 HTTP 状态码为：{response.StatusCode}");
             return await response.Content.ReadFromJsonAsync<Channel>(jsonSerializerOptions);
         }
 
@@ -280,9 +285,12 @@ namespace QCBSdk
         /// <param name="channelId">指定的子频道 ID</param>
         /// <param name="editChannelRequest">携带的修改请求</param>
         /// <returns>一个 <see cref="Channel"/> 对象，表明修改后的子频道的详情</returns>
+        /// <exception cref="Exception"></exception>
         public async Task<Channel?> EditChannelAsync(string channelId, EditChannelRequest editChannelRequest)
         {
             var response = await httpClient.PatchAsJsonAsync($"/channels/{channelId}", editChannelRequest, jsonSerializerOptions);
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"修改子频道出错，其 HTTP 状态码为：{response.StatusCode}");
             return await response.Content.ReadFromJsonAsync<Channel>(jsonSerializerOptions);
         }
         

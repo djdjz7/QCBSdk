@@ -11,11 +11,11 @@ namespace QBot
 {
     public static class Utils
     {
-        static JsonSerializerOptions options = new JsonSerializerOptions()
+        public static JsonSerializerOptions options = new JsonSerializerOptions()
         {
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
             WriteIndented = true,
-            PropertyNamingPolicy = new SnakeCaseNamingPolicy(),
+            PropertyNamingPolicy = new JsonSnakeCaseLowerNamingPolicy(),
             DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         };
         public static string SerializeObject(this object? obj)

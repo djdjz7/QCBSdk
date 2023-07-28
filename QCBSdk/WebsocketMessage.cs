@@ -1,9 +1,9 @@
-﻿using System;
+﻿using QCBSdk.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static QCBSdk.BasicObjects;
 using static QCBSdk.Enums;
 
 namespace QCBSdk

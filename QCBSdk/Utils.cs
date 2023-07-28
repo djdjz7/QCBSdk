@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 namespace QCBSdk
 {
+    [Obsolete("Using method from dotnet 8 instead.", true)]
     public class SnakeCaseNamingPolicy : JsonNamingPolicy
     {
         readonly Regex pascalSplittingRegex = new Regex(@"(?<!^)(?=[A-Z])");

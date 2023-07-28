@@ -1,5 +1,4 @@
-﻿using static QCBSdk.Enums;
-namespace QCBSdk
+﻿namespace QCBSdk.Types
 {
     public class ResponseTypes
     {
@@ -12,5 +11,5 @@ namespace QCBSdk
             public string? Url { get; set; }
         }
     }
-    
+
 }

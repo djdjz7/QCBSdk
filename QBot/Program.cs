@@ -1,30 +1,30 @@
 ﻿using QCBSdk;
-using System.Runtime.CompilerServices;
+using QCBSdk.Types;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
 using System.Text.Unicode;
-using System.Xml.Linq;
 using static QBot.Secrets;
-using static QCBSdk.BasicObjects;
-using static QCBSdk.RequestTypes;
-using static QCBSdk.Enums;
+
 namespace QBot
 {
     internal class Program
     {
-        
         static async Task Main(string[] args)
         {
             var botClient = new QCBClient(BotAppId, BotToken, BotSecret, true);
             await botClient.InitializeAsync();
+            /*
+            var guilds = await botClient.GetBotGuildListAsync();
+            var channels = await botClient.GetChannelListAsync(guilds[0].Id);
+            Console.WriteLine(channels.SerializeObject());
+            var cid = Console.ReadLine();*/
+
             while (true)
             {
                 Console.WriteLine(botClient.latestS);
                 await Task.Delay(10000);
             }
+
         }
-        
     }
 }
