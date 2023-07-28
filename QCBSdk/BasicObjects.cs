@@ -9,6 +9,10 @@ namespace QCBSdk
 {
     public class BasicObjects
     {
+        /// <summary>
+        /// 频道对象 <br/>
+        /// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/model.html">QQ 机器人文档</see>
+        /// </summary>
         public class Guild
         {
             public string? Id { get; set; } = null;
@@ -21,6 +25,10 @@ namespace QCBSdk
             public int? MaxMembers { get; set; } = null;
             public string? Description { get; set; } = null;
         }
+        /// <summary>
+        /// 子频道对象 <br/>
+        /// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html">QQ 机器人文档</see>
+        /// </summary>
         public class Channel
         {
             public string? Id { get; set; } = null;
@@ -36,6 +44,11 @@ namespace QCBSdk
             public string? ApplicationId { get; set; } = null;
             public string? Permissions { get; set; } = null;
         }
+
+        /// <summary>
+        /// 用户对象 <br/>
+        /// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/user/model.html">QQ 机器人文档</see>
+        /// </summary>
         public class User
         {
             public string? Id { get; set; } = null;

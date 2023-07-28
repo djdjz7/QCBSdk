@@ -9,6 +9,10 @@ namespace QCBSdk
 {
     public class RequestTypes
     {
+        /// <summary>
+        /// 创建子频道所携带的请求<br/>
+        /// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/post_channels.html">QQ 机器人文档</see>
+        /// </summary>
         public class CreateChannelRequest
         {
             public string? Name { get; set; } = null;
@@ -22,6 +26,11 @@ namespace QCBSdk
             public SpeakPermission? SpeakPermission { get; set; } = null;
             public string? ApplicationId { get; set; } = null;
         }
+
+        /// <summary>
+        /// 修改子频道所携带的请求<br/>
+        /// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/patch_channels.html">QQ 机器人文档</see>
+        /// </summary>
         public class EditChannelRequest
         {
             public string? Name { get; set; } = null;

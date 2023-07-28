@@ -16,7 +16,7 @@ namespace QCBSdk
         }
     }
 
-    public static class Utils
+    internal static class Utils
     {
         public static byte[] ConcatByteArray(byte[] array1, byte[] array2)
         {

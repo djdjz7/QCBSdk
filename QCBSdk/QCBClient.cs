@@ -31,6 +31,18 @@ namespace QCBSdk
         public delegate void MessageEventHandler(object sender, string data);
         public event MessageEventHandler? OnMessageReceived;
         public int? latestS = null;
+
+        /// <summary>
+        /// 实例化一个机器人客户端。
+        /// </summary>
+        /// <remarks>
+        /// 如果要启动 WebSocket 连接，使用 <see cref="InitializeAsync"/>
+        /// </remarks>
+        /// <seealse cref="InitializeAsync"/>
+        /// <param name="botAppId">BotAppID（开发者 ID）</param>
+        /// <param name="botToken">机器人令牌</param>
+        /// <param name="botSecret">机器人密钥</param>
+        /// <param name="isInSandbox">是否在沙箱环境</param>
         public QCBClient(string botAppId, string botToken, string botSecret, bool isInSandbox)
         {
             appId = botAppId;
@@ -40,6 +52,10 @@ namespace QCBSdk
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bot {botAppId}.{botToken}");
         }
 
+        /// <summary>
+        /// 初始化 WebSocket 连接
+        /// </summary>
+        /// <exception cref="Exception">任何异常导致无法初始化 WebSocket 连接时，抛出异常</exception>
         public async Task InitializeAsync()
         {
             gateway = await GetGeneralWssGateway();
@@ -79,7 +95,26 @@ namespace QCBSdk
             thread.IsBackground = true;
             thread.Start();
         }
+        private async Task<string?> ClientWebSocketReceiveString()
+        {
+            if (clientWebSocket.State == WebSocketState.Open || clientWebSocket.State == WebSocketState.CloseSent)
+            {
+                byte[] buffer = new byte[1024];
+                byte[] fullResult;
+                var receiveResult = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                fullResult = buffer;
 
+                while (receiveResult.EndOfMessage != true)
+                {
+                    buffer = new byte[1024];
+                    receiveResult = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                    fullResult = ConcatByteArray(fullResult, buffer);
+                }
+                return Encoding.UTF8.GetString(fullResult).TrimEnd('\0');
+            }
+            else
+                return null;
+        }
         private void Heartbeat(object? state)
         {
             if (clientWebSocket.State == WebSocketState.Open || clientWebSocket.State == WebSocketState.CloseSent)
@@ -92,7 +127,6 @@ namespace QCBSdk
                 clientWebSocket.SendAsync(new ArraySegment<byte>(content), WebSocketMessageType.Text, true, CancellationToken.None);
             }
         }
-
         private async void WebSocketMessageListener(object? obj)
         {
 
@@ -178,73 +212,113 @@ namespace QCBSdk
             byte[] resumeMessageBytes = Encoding.UTF8.GetBytes(resumeMessageString);
             clientWebSocket.SendAsync(new ArraySegment<byte>(resumeMessageBytes), WebSocketMessageType.Text, true, CancellationToken.None).Wait();
         }
+
+
+        /// <summary>
+        /// 获取机器人详情
+        /// </summary>
+        /// <returns></returns>
         public async Task<User?> GetBotDetailsAsync()
         {
             return await httpClient.GetFromJsonAsync<User>("/users/@me", jsonSerializerOptions);
         }
+
+        /// <summary>
+        /// 获取机器人所在频道
+        /// </summary>
+        /// <returns>一个 <see cref="Guild"/> 列表，表明机器人所在频道</returns>
         public async Task<List<Guild>?> GetBotGuildListAsync()
         {
             return await httpClient.GetFromJsonAsync<List<Guild>>("/users/@me/guilds", jsonSerializerOptions);
         }
+
+        /// <summary>
+        /// 获取指定频道详情
+        /// </summary>
+        /// <param name="guildId">指定频道 ID</param>
+        /// <returns>一个 <see cref="Guild"/> 对象，表明请求频道的详情</returns>
         public async Task<Guild?> GetGuildDetailsAsync(string guildId)
         {
             return await httpClient.GetFromJsonAsync<Guild>($"/guilds/{guildId}", jsonSerializerOptions);
         }
+
+        /// <summary>
+        /// 获取指定频道的子频道
+        /// </summary>
+        /// <param name="guildId">指定频道 ID</param>
+        /// <returns>一个 <see cref="Channel"/> 列表，表明指定频道包含的子频道</returns>
         public async Task<List<Channel>?> GetChannelListAsync(string guildId)
         {
             return await httpClient.GetFromJsonAsync<List<Channel>>($"/guilds/{guildId}/channels", jsonSerializerOptions);
         }
+
+        /// <summary>
+        /// 获取指定子频道详情
+        /// </summary>
+        /// <param name="channelId">指定子频道 ID</param>
+        /// <returns>一个 <see cref="Channel"/> 对象，表明请求子频道的详情</returns>
         public async Task<Channel?> GetChannelDetailsAsync(string channelId)
         {
             return await httpClient.GetFromJsonAsync<Channel>($"/channels/{channelId}", jsonSerializerOptions);
         }
+
+        /// <summary>
+        /// 创建一个子频道
+        /// </summary>
+        /// <param name="guildId">子频道的父频道 ID</param>
+        /// <param name="createChannelRequest">携带的请求</param>
+        /// <returns>一个 <see cref="Channel"/> 对象，表明新创建的子频道的详情</returns>
         public async Task<Channel?> CreateChannelAsync(string guildId, CreateChannelRequest createChannelRequest)
         {
             var response = await httpClient.PostAsJsonAsync($"/guilds/{guildId}/channels", createChannelRequest, jsonSerializerOptions);
             return await response.Content.ReadFromJsonAsync<Channel>(jsonSerializerOptions);
         }
+
+        /// <summary>
+        /// 修改指定的子频道
+        /// </summary>
+        /// <param name="channelId">指定的子频道 ID</param>
+        /// <param name="editChannelRequest">携带的修改请求</param>
+        /// <returns>一个 <see cref="Channel"/> 对象，表明修改后的子频道的详情</returns>
         public async Task<Channel?> EditChannelAsync(string channelId, EditChannelRequest editChannelRequest)
         {
             var response = await httpClient.PatchAsJsonAsync($"/channels/{channelId}", editChannelRequest, jsonSerializerOptions);
             return await response.Content.ReadFromJsonAsync<Channel>(jsonSerializerOptions);
         }
+        
+        /// <summary>
+        /// 删除指定的子频道
+        /// </summary>
+        /// <param name="channelId">指定的子频道 ID</param>
+        /// <exception cref="Exception"></exception>
         public async Task DeleteChannelAsync(string channelId)
         {
             var response = await httpClient.DeleteAsync($"/channels/{channelId}");
             if (!response.IsSuccessStatusCode)
                 throw new Exception($"删除子频道出错，其 HTTP 状态码为：{response.StatusCode}");
         }
+
+        /// <summary>
+        /// 获取指定子频道在线人数
+        /// </summary>
+        /// <param name="channelId">指定的子频道 ID</param>
+        /// <returns></returns>
         public async Task<int?> GetChannelOnlineCount(string channelId)
         {
             var response = await httpClient.GetFromJsonAsync<GetChannelOnlineCountResponse>($"/channels/{channelId}/online_nums", jsonSerializerOptions);
             return response?.OnlineNums;
         }
+
+        /// <summary>
+        /// 获取通用 WebSocket 接入点
+        /// </summary>
+        /// <returns>成功则返回接入点 url，异常则返回 <see langword="null"/></returns>
         public async Task<string?> GetGeneralWssGateway()
         {
             var response = await httpClient.GetFromJsonAsync<GetWssGatewayResponse>("/gateway", jsonSerializerOptions);
             return response?.Url;
         }
 
-        public async Task<string?> ClientWebSocketReceiveString()
-        {
-            if (clientWebSocket.State == WebSocketState.Open || clientWebSocket.State == WebSocketState.CloseSent)
-            {
-                byte[] buffer = new byte[1024];
-                byte[] fullResult;
-                var receiveResult = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-                fullResult = buffer;
-
-                while (receiveResult.EndOfMessage != true)
-                {
-                    buffer = new byte[1024];
-                    receiveResult = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-                    fullResult = ConcatByteArray(fullResult, buffer);
-                }
-                return Encoding.UTF8.GetString(fullResult).TrimEnd('\0');
-            }
-            else
-                return null;
-        }
 
     }
 }
