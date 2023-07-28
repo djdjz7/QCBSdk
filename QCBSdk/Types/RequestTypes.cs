@@ -39,5 +39,17 @@ namespace QCBSdk.Types
             public PrivateType? PrivateType { get; set; } = null;
             public SpeakPermission? SpeakPermission { get; set; } = null;
         }
+
+        public class SendMessageRequest
+        {
+            public string? Content { get; set; }
+            public MessageEmbed? Embed { get; set; }
+            public MessageArk? Ark { get; set; }
+            public MessageReference? MessageReference { get; set; }
+            public string? Image { get; set; }
+            public string? MsgId { get; set; }
+            public string? EventId { get; set; }
+            public MessageMarkdown? Markdown { get; set; }
+        }
     }
 }

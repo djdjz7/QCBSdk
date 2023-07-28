@@ -79,7 +79,7 @@ namespace QCBSdk
                 d = new
                 {
                     token = $"{appId}.{token}",
-                    intents = 0 | 1 << 30,
+                    intents = 0 | 1 << 9 | 1 << 27 | 1 << 30,
                 }
             };
             string identifyString = JsonSerializer.Serialize(identifyMessage);
@@ -140,7 +140,7 @@ namespace QCBSdk
                     string? content = await ClientWebSocketReceiveString();
                     if (string.IsNullOrEmpty(content))
                         continue;
-
+                    Console.WriteLine(content);
                     var message = JsonSerializer.Deserialize<WebSocketMessage>(content);
                     switch (message?.op)
                     {
@@ -327,6 +327,44 @@ namespace QCBSdk
             return response?.Url;
         }
 
+        public async Task<Message?> SendMessageAsync(string channelId, SendMessageRequest sendMessageRequest)
+        {
+            var response = await httpClient.PostAsJsonAsync($"/channels/{channelId}/messages", sendMessageRequest, jsonSerializerOptions);
+            return await response.Content.ReadFromJsonAsync<Message>(jsonSerializerOptions);
+        }
+        public async Task<Message?> SendMessageAsync(string channelId, SendMessageRequest sendMessageRequest, Stream imageStream, string imageFileName)
+        {
+            var content = new MultipartFormDataContent();
+            if (sendMessageRequest.Content is not null)
+                content.Add(new StringContent(sendMessageRequest.Content), "content");
+            if (sendMessageRequest.Embed is not null)
+                content.Add(new StringContent(
+                    JsonSerializer.Serialize(sendMessageRequest.Embed, jsonSerializerOptions)),
+                    "embed");
+            if (sendMessageRequest.Ark is not null)
+                content.Add(new StringContent(
+                    JsonSerializer.Serialize(sendMessageRequest.Ark, jsonSerializerOptions)),
+                    "ark");
+            if (sendMessageRequest.MessageReference is not null)
+                content.Add(new StringContent(
+                    JsonSerializer.Serialize(sendMessageRequest.MessageReference, jsonSerializerOptions)),
+                    "message_reference");
+            if (sendMessageRequest.Image is not null)
+                content.Add(new StringContent(sendMessageRequest.Image), "image");
+            if (sendMessageRequest.MsgId is not null)
+                content.Add(new StringContent(sendMessageRequest.MsgId), "msg_id");
+            if (sendMessageRequest.Markdown is not null)
+                content.Add(new StringContent(
+                    JsonSerializer.Serialize(sendMessageRequest.Markdown, jsonSerializerOptions)),
+                    "markdown");
 
+            content.Add(new StreamContent(imageStream), "file_image", imageFileName);
+
+            var response = await httpClient.PostAsync($"/channels/{channelId}/messages", content);
+            var message = await response.Content.ReadFromJsonAsync<Message>(jsonSerializerOptions);
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+            return message;
+        }
+        
     }
 }

@@ -89,6 +89,7 @@ namespace QCBSdk.Types
         public Message Message { get; set; }
         public User OpUser { get; set; }
     }
+
     /*
     public class MessageKeyboard
     {

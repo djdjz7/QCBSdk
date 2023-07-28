@@ -22,5 +22,6 @@ namespace QBot
         {
             return JsonSerializer.Serialize(obj, options);
         }
+
     }
 }
