@@ -9,8 +9,16 @@
     <NeutralLanguage>zh-Hans</NeutralLanguage>
     <RepositoryUrl>https://github.com/djdjz7/QCBSdk</RepositoryUrl>
     <Description>一个非官方的 QQ 频道机器人 SDK</Description>
+	<PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
     <Authors>djdjz7</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>

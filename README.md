@@ -1,4 +1,4 @@
 # QCBSdk
 ![build status](https://github.com/djdjz7/QCBSdk/actions/workflows/dotnet.yml/badge.svg)
 
-Ò»¸ö·Ç¹Ù·½µÄ QQ ÆµµÀ»úÆ÷ÈË SDK£¬ËæÔµ¸üĞÂ
+ä¸€ä¸ªéå®˜æ–¹çš„ QQ é¢‘é“æœºå™¨äºº SDKï¼Œéšç¼˜æ›´æ–°
