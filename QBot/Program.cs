@@ -18,6 +18,7 @@ namespace QBot
         static async Task Main(string[] args)
         {
             var botClient = new QCBClient(BotAppId, BotToken, BotSecret, true);
+            await botClient.InitializeAsync();
             while (true)
             {
                 Console.WriteLine(botClient.latestS);
