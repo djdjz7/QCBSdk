@@ -369,3 +369,6 @@ FodyWeavers.xsd
 /QBot/JsonNamingPolicy/JsonSnakeCaseLowerNamingPolicy.cs
 /QBot/JsonNamingPolicy/ThrowHelper.cs
 /QBot/Secrets.cs
+
+# DocFX
+/docfx_project/_site/

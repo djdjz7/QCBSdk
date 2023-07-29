@@ -180,7 +180,3 @@ code {
   margin: 4px 2px;
   box-shadow: var(--card-box-shadow);
 }
-
-h4.section {
-  font-weight: regular !important; 
-}
