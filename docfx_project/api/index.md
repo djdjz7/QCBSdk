@@ -1,2 +1,3 @@
-# PLACEHOLDER
-TODO: Add .NET projects to the *src* folder and run `docfx` to generate **REAL** *API Documentation*!
+# API 文档
+此处列举了所有现存 API  
+从 [此处](./QCBSdk.QCBClient.html) 开始
