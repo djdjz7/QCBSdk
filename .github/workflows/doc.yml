@@ -36,7 +36,8 @@ jobs:
       - run: dotnet build
       - run: dotnet tool update -g docfx
       - run: docfx docfx_project/docfx.json
-
+      - run: cp docfx_project/BingSiteAuth.xml docfx_project/_site/BingSiteAuth.xml
+  
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
