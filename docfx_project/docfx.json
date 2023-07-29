@@ -6,7 +6,7 @@
           "files": [
             "bin/**/*.dll"
           ],
-          "src": "../"
+          "src": "../QCBSdk"
         }
       ],
       "dest": "api",
