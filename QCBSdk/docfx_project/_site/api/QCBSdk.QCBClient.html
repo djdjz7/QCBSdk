@@ -1,0 +1,921 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class QCBClient
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class QCBClient
+ ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="QCBSdk.QCBClient">
+
+
+
+  <h1 id="QCBSdk_QCBClient" data-uid="QCBSdk.QCBClient" class="text-break">
+    Class QCBClient
+  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="QCBSdk.html">QCBSdk</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>QCBSdk.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class QCBClient</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">QCBClient</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="QCBSdk_QCBClient__ctor_" data-uid="QCBSdk.QCBClient.#ctor*"></a>
+
+  <h3 id="QCBSdk_QCBClient__ctor_System_String_System_String_System_String_System_Boolean_" data-uid="QCBSdk.QCBClient.#ctor(System.String,System.String,System.String,System.Boolean)">
+  QCBClient(string, string, string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>实例化一个机器人客户端</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public QCBClient(string botAppId, string botToken, string botSecret, bool isInSandbox)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>botAppId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>BotAppID（开发者 ID）</p>
+</dd>
+    <dt><code>botToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>机器人令牌</p>
+</dd>
+    <dt><code>botSecret</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>机器人密钥</p>
+</dd>
+    <dt><code>isInSandbox</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否在沙箱环境</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="QCBSdk_QCBClient__ctor_System_String_System_String_System_String_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>如果要启动 WebSocket 连接，使用 <a class="xref" href="QCBSdk.QCBClient.html#QCBSdk_QCBClient_InitializeAsync_System_Int32_">InitializeAsync(int)</a></p>
+</div>
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="QCBSdk_QCBClient_clientWebSocket" data-uid="QCBSdk.QCBClient.clientWebSocket">
+  clientWebSocket
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ClientWebSocket clientWebSocket</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.websockets.clientwebsocket">ClientWebSocket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="QCBSdk_QCBClient_latestS" data-uid="QCBSdk.QCBClient.latestS">
+  latestS
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? latestS</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="QCBSdk_QCBClient_ActionsInvoker_" data-uid="QCBSdk.QCBClient.ActionsInvoker*"></a>
+
+  <h3 id="QCBSdk_QCBClient_ActionsInvoker_System_String_System_Text_Json_JsonElement_" data-uid="QCBSdk.QCBClient.ActionsInvoker(System.String,System.Text.Json.JsonElement)">
+  ActionsInvoker(string, JsonElement)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActionsInvoker(string action, JsonElement data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonelement">JsonElement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_CreateChannelAsync_" data-uid="QCBSdk.QCBClient.CreateChannelAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_CreateChannelAsync_System_String_QCBSdk_Types_RequestTypes_CreateChannelRequest_" data-uid="QCBSdk.QCBClient.CreateChannelAsync(System.String,QCBSdk.Types.RequestTypes.CreateChannelRequest)">
+  CreateChannelAsync(string, CreateChannelRequest)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建一个子频道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;Channel?&gt; CreateChannelAsync(string guildId, RequestTypes.CreateChannelRequest createChannelRequest)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guildId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>子频道的父频道 ID</p>
+</dd>
+    <dt><code>createChannelRequest</code> <a class="xref" href="QCBSdk.Types.RequestTypes.html">RequestTypes</a>.<a class="xref" href="QCBSdk.Types.RequestTypes.CreateChannelRequest.html">CreateChannelRequest</a></dt>
+    <dd><p>携带的请求</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="QCBSdk.Types.Channel.html">Channel</a>&gt;</dt>
+    <dd><p>一个 <a class="xref" href="QCBSdk.Types.Channel.html">Channel</a> 对象，表明新创建的子频道的详情</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="QCBSdk_QCBClient_DeleteChannelAsync_" data-uid="QCBSdk.QCBClient.DeleteChannelAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_DeleteChannelAsync_System_String_" data-uid="QCBSdk.QCBClient.DeleteChannelAsync(System.String)">
+  DeleteChannelAsync(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除指定的子频道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task DeleteChannelAsync(string channelId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定的子频道 ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="QCBSdk_QCBClient_EditChannelAsync_" data-uid="QCBSdk.QCBClient.EditChannelAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_EditChannelAsync_System_String_QCBSdk_Types_RequestTypes_EditChannelRequest_" data-uid="QCBSdk.QCBClient.EditChannelAsync(System.String,QCBSdk.Types.RequestTypes.EditChannelRequest)">
+  EditChannelAsync(string, EditChannelRequest)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>修改指定的子频道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;Channel?&gt; EditChannelAsync(string channelId, RequestTypes.EditChannelRequest editChannelRequest)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定的子频道 ID</p>
+</dd>
+    <dt><code>editChannelRequest</code> <a class="xref" href="QCBSdk.Types.RequestTypes.html">RequestTypes</a>.<a class="xref" href="QCBSdk.Types.RequestTypes.EditChannelRequest.html">EditChannelRequest</a></dt>
+    <dd><p>携带的修改请求</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="QCBSdk.Types.Channel.html">Channel</a>&gt;</dt>
+    <dd><p>一个 <a class="xref" href="QCBSdk.Types.Channel.html">Channel</a> 对象，表明修改后的子频道的详情</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="QCBSdk_QCBClient_GetBotDetailsAsync_" data-uid="QCBSdk.QCBClient.GetBotDetailsAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_GetBotDetailsAsync" data-uid="QCBSdk.QCBClient.GetBotDetailsAsync">
+  GetBotDetailsAsync()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取机器人详情</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;User?&gt; GetBotDetailsAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="QCBSdk.Types.User.html">User</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_GetBotGuildListAsync_" data-uid="QCBSdk.QCBClient.GetBotGuildListAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_GetBotGuildListAsync" data-uid="QCBSdk.QCBClient.GetBotGuildListAsync">
+  GetBotGuildListAsync()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取机器人所在频道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;Guild&gt;?&gt; GetBotGuildListAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="QCBSdk.Types.Guild.html">Guild</a>&gt;&gt;</dt>
+    <dd><p>一个 <a class="xref" href="QCBSdk.Types.Guild.html">Guild</a> 列表，表明机器人所在频道</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_GetChannelDetailsAsync_" data-uid="QCBSdk.QCBClient.GetChannelDetailsAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_GetChannelDetailsAsync_System_String_" data-uid="QCBSdk.QCBClient.GetChannelDetailsAsync(System.String)">
+  GetChannelDetailsAsync(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定子频道详情</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;Channel?&gt; GetChannelDetailsAsync(string channelId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定子频道 ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="QCBSdk.Types.Channel.html">Channel</a>&gt;</dt>
+    <dd><p>一个 <a class="xref" href="QCBSdk.Types.Channel.html">Channel</a> 对象，表明请求子频道的详情</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_GetChannelListAsync_" data-uid="QCBSdk.QCBClient.GetChannelListAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_GetChannelListAsync_System_String_" data-uid="QCBSdk.QCBClient.GetChannelListAsync(System.String)">
+  GetChannelListAsync(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定频道的子频道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;Channel&gt;?&gt; GetChannelListAsync(string guildId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guildId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定频道 ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="QCBSdk.Types.Channel.html">Channel</a>&gt;&gt;</dt>
+    <dd><p>一个 <a class="xref" href="QCBSdk.Types.Channel.html">Channel</a> 列表，表明指定频道包含的子频道</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_GetChannelOnlineCount_" data-uid="QCBSdk.QCBClient.GetChannelOnlineCount*"></a>
+
+  <h3 id="QCBSdk_QCBClient_GetChannelOnlineCount_System_String_" data-uid="QCBSdk.QCBClient.GetChannelOnlineCount(System.String)">
+  GetChannelOnlineCount(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定子频道在线人数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;int?&gt; GetChannelOnlineCount(string channelId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定的子频道 ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_GetGeneralWssGateway_" data-uid="QCBSdk.QCBClient.GetGeneralWssGateway*"></a>
+
+  <h3 id="QCBSdk_QCBClient_GetGeneralWssGateway" data-uid="QCBSdk.QCBClient.GetGeneralWssGateway">
+  GetGeneralWssGateway()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取通用 WebSocket 接入点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string?&gt; GetGeneralWssGateway()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>成功则返回接入点 url，异常则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_GetGuildDetailsAsync_" data-uid="QCBSdk.QCBClient.GetGuildDetailsAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_GetGuildDetailsAsync_System_String_" data-uid="QCBSdk.QCBClient.GetGuildDetailsAsync(System.String)">
+  GetGuildDetailsAsync(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定频道详情</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;Guild?&gt; GetGuildDetailsAsync(string guildId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guildId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定频道 ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="QCBSdk.Types.Guild.html">Guild</a>&gt;</dt>
+    <dd><p>一个 <a class="xref" href="QCBSdk.Types.Guild.html">Guild</a> 对象，表明请求频道的详情</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_InitializeAsync_" data-uid="QCBSdk.QCBClient.InitializeAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_InitializeAsync_System_Int32_" data-uid="QCBSdk.QCBClient.InitializeAsync(System.Int32)">
+  InitializeAsync(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化 WebSocket 连接</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task InitializeAsync(int intents)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>intents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>任何异常导致无法初始化 WebSocket 连接时，抛出异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="QCBSdk_QCBClient_SendMessageAsync_" data-uid="QCBSdk.QCBClient.SendMessageAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_SendMessageAsync_System_String_QCBSdk_Types_RequestTypes_SendMessageRequest_" data-uid="QCBSdk.QCBClient.SendMessageAsync(System.String,QCBSdk.Types.RequestTypes.SendMessageRequest)">
+  SendMessageAsync(string, SendMessageRequest)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;Message?&gt; SendMessageAsync(string channelId, RequestTypes.SendMessageRequest sendMessageRequest)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>sendMessageRequest</code> <a class="xref" href="QCBSdk.Types.RequestTypes.html">RequestTypes</a>.<a class="xref" href="QCBSdk.Types.RequestTypes.SendMessageRequest.html">SendMessageRequest</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="QCBSdk.Types.Message.html">Message</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="QCBSdk_QCBClient_SendMessageAsync_" data-uid="QCBSdk.QCBClient.SendMessageAsync*"></a>
+
+  <h3 id="QCBSdk_QCBClient_SendMessageAsync_System_String_QCBSdk_Types_RequestTypes_SendMessageRequest_System_IO_Stream_System_String_" data-uid="QCBSdk.QCBClient.SendMessageAsync(System.String,QCBSdk.Types.RequestTypes.SendMessageRequest,System.IO.Stream,System.String)">
+  SendMessageAsync(string, SendMessageRequest, Stream, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;Message?&gt; SendMessageAsync(string channelId, RequestTypes.SendMessageRequest sendMessageRequest, Stream imageStream, string imageFileName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>sendMessageRequest</code> <a class="xref" href="QCBSdk.Types.RequestTypes.html">RequestTypes</a>.<a class="xref" href="QCBSdk.Types.RequestTypes.SendMessageRequest.html">SendMessageRequest</a></dt>
+    <dd></dd>
+    <dt><code>imageStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>imageFileName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="QCBSdk.Types.Message.html">Message</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="QCBSdk_QCBClient_OnAtMessageCreate" data-uid="QCBSdk.QCBClient.OnAtMessageCreate">
+  OnAtMessageCreate
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event QCBClient.MessageEventHandler? OnAtMessageCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="QCBSdk.QCBClient.html">QCBClient</a>.<a class="xref" href="QCBSdk.QCBClient.MessageEventHandler.html">MessageEventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="QCBSdk_QCBClient_OnMessageCreate" data-uid="QCBSdk.QCBClient.OnMessageCreate">
+  OnMessageCreate
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event QCBClient.MessageEventHandler? OnMessageCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="QCBSdk.QCBClient.html">QCBClient</a>.<a class="xref" href="QCBSdk.QCBClient.MessageEventHandler.html">MessageEventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="QCBSdk_QCBClient_OnUnknownMessageCreate" data-uid="QCBSdk.QCBClient.OnUnknownMessageCreate">
+  OnUnknownMessageCreate
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event QCBClient.DefaultEventHandler? OnUnknownMessageCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="QCBSdk.QCBClient.html">QCBClient</a>.<a class="xref" href="QCBSdk.QCBClient.DefaultEventHandler.html">DefaultEventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

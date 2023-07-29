@@ -16,13 +16,6 @@ namespace QBot
             var guilds = await BotClient.GetBotGuildListAsync();
             var channels = await BotClient.GetChannelListAsync(guilds[0].Id);
             Console.WriteLine(channels.SerializeObject());
-            var cid = Console.ReadLine();
-
-            /*
-            using (var fs = new FileStream("C:\\Users\\djdjz\\Desktop\\新建文件夹\\OIG.jpg", FileMode.Open))
-            {
-                await botClient.SendMessageAsync(cid, new RequestTypes.SendMessageRequest(), fs, "OIG.jpg");
-            }*/
 
 
 
