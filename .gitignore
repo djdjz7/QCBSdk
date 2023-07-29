@@ -363,3 +363,9 @@ MigrationBackup/
 FodyWeavers.xsd
 /QBot/Secrets.cs
 /QBot/QBot.csproj
+/QBot/Utils.cs
+/QBot/JsonNamingPolicy/JsonConstants.cs
+/QBot/JsonNamingPolicy/JsonSeparatorNamingPolicy.cs
+/QBot/JsonNamingPolicy/JsonSnakeCaseLowerNamingPolicy.cs
+/QBot/JsonNamingPolicy/ThrowHelper.cs
+/QBot/Secrets.cs

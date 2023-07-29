@@ -10,6 +10,19 @@
         {
             public string? Url { get; set; }
         }
+        public class RequestErrorResponse
+        {
+                public int Code { get; set; }
+                public string Message { get; set; }
+                public object Data { get; set; }
+        }
+
+        public class Data
+        {
+            public MessageAudit MessageAudit { get; set; }
+        }
+
+        
     }
 
 }

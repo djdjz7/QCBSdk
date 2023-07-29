@@ -13,7 +13,7 @@ using static QCBSdk.Utils;
 
 namespace QCBSdk
 {
-    public class QCBClient
+    public partial class QCBClient
     {
         private string appId;
         private string token;
@@ -26,16 +26,14 @@ namespace QCBSdk
         private JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
         {
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-            //PropertyNamingPolicy = new SnakeCaseNamingPolicy(),
             PropertyNamingPolicy = new JsonSnakeCaseLowerNamingPolicy(),
             DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         };
-        public delegate void MessageEventHandler(object sender, string data);
-        public event MessageEventHandler? OnMessageReceived;
+
         public int? latestS = null;
 
         /// <summary>
-        /// 实例化一个机器人客户端。
+        /// 实例化一个机器人客户端
         /// </summary>
         /// <remarks>
         /// 如果要启动 WebSocket 连接，使用 <see cref="InitializeAsync"/>
@@ -58,7 +56,7 @@ namespace QCBSdk
         /// 初始化 WebSocket 连接
         /// </summary>
         /// <exception cref="Exception">任何异常导致无法初始化 WebSocket 连接时，抛出异常</exception>
-        public async Task InitializeAsync()
+        public async Task InitializeAsync(int intents)
         {
             gateway = await GetGeneralWssGateway();
             if (gateway is null)
@@ -79,7 +77,7 @@ namespace QCBSdk
                 d = new
                 {
                     token = $"{appId}.{token}",
-                    intents = 0 | 1 << 9 | 1 << 27 | 1 << 30,
+                    intents = intents,
                 }
             };
             string identifyString = JsonSerializer.Serialize(identifyMessage);
@@ -145,7 +143,8 @@ namespace QCBSdk
                     switch (message?.op)
                     {
                         case Opcode.Dispatch:
-                            Console.WriteLine($"{DateTime.Now}:\n{message?.d}");
+                            // Console.WriteLine($"{DateTime.Now}:\n{message?.d}");
+                            ActionsInvoker(message.t, (JsonElement)message.d);
                             break;
                         case Opcode.Identity:
                             break;
@@ -195,7 +194,7 @@ namespace QCBSdk
             Console.WriteLine(helloResponseString);
             var helloResponseMessage = JsonSerializer.Deserialize<WebSocketMessage>(helloResponseString) ?? throw new Exception("WebSocket 重新连接异常，HELLO 消息异常");
             int interval = ((JsonElement)helloResponseMessage.d).Deserialize<ConnectResponseD>()?.heartbeat_interval ?? throw new Exception("WebSocket 重新连接异常，HELLO 消息异常");
-            
+
             heartbeatTimer?.Dispose();
             heartbeatTimer = new Timer(Heartbeat, null, 0, interval);
 
@@ -293,7 +292,7 @@ namespace QCBSdk
                 throw new Exception($"修改子频道出错，其 HTTP 状态码为：{response.StatusCode}");
             return await response.Content.ReadFromJsonAsync<Channel>(jsonSerializerOptions);
         }
-        
+
         /// <summary>
         /// 删除指定的子频道
         /// </summary>
@@ -330,6 +329,8 @@ namespace QCBSdk
         public async Task<Message?> SendMessageAsync(string channelId, SendMessageRequest sendMessageRequest)
         {
             var response = await httpClient.PostAsJsonAsync($"/channels/{channelId}/messages", sendMessageRequest, jsonSerializerOptions);
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
             return await response.Content.ReadFromJsonAsync<Message>(jsonSerializerOptions);
         }
         public async Task<Message?> SendMessageAsync(string channelId, SendMessageRequest sendMessageRequest, Stream imageStream, string imageFileName)
@@ -362,9 +363,36 @@ namespace QCBSdk
 
             var response = await httpClient.PostAsync($"/channels/{channelId}/messages", content);
             var message = await response.Content.ReadFromJsonAsync<Message>(jsonSerializerOptions);
+            Console.WriteLine(response.StatusCode.ToString());
+            Console.WriteLine((int)response.StatusCode); // 202 here
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             return message;
         }
-        
+
+        public void ActionsInvoker(string action, JsonElement data)
+        {
+            switch (action)
+            {
+                case "MESSAGE_CREATE":
+                    if (OnMessageCreate is null)
+                        return;
+                    var message1 = data.Deserialize<Message>(jsonSerializerOptions);
+                    if (message1 is null)
+                        return;
+                    OnMessageCreate.Invoke(message1);
+                    break;
+                case "AT_MESSAGE_CREATE":
+                    if (OnMessageCreate is null)
+                        return;
+                    var message2 = data.Deserialize<Message>(jsonSerializerOptions);
+                    if (message2 is null)
+                        return;
+                    OnMessageCreate.Invoke(message2);
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

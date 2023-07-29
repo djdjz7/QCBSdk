@@ -17,6 +17,14 @@ namespace QCBSdk.Types
         public bool MentionEveryone { get; set; }
         public User Author { get; set; }
         public MessageAttachment[] Attachments { get; set; }
+        public MessageEmbed[] Embeds { get; set; }
+        public User[] Mentions { get; set; }
+        public Member Member { get; set; }
+        public MessageArk Ark { get; set; }
+        public int Seq { get; set; }
+        public string SeqInChannel { get; set; }
+        public MessageReference MessageReference { get; set; }
+        public string SrcGuildId { get; set; }
 
     }
 
@@ -89,7 +97,10 @@ namespace QCBSdk.Types
         public Message Message { get; set; }
         public User OpUser { get; set; }
     }
-
+    public class MessageAudit
+    {
+        public string AuditId { get; set; }
+    }
     /*
     public class MessageKeyboard
     {
