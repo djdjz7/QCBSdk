@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
-using static QCBSdk.Enums;
 using static QCBSdk.Types.RequestTypes;
 using static QCBSdk.Types.ResponseTypes;
 using static QCBSdk.Url;
