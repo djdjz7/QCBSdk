@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using static QCBSdk.Enums;
 namespace QCBSdk.Types
 {
     public class RequestTypes

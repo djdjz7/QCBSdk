@@ -1,6 +1,4 @@
-﻿using static QCBSdk.Enums;
-
-namespace QCBSdk.Types
+﻿namespace QCBSdk.Types
 {
     /// <summary>
     /// 频道对象 <br/>
