@@ -1,9 +1,13 @@
-﻿using OpenAI;
+﻿using Microsoft.Extensions.DependencyInjection;
+using OpenAI;
+using OpenAI.Extensions;
+using OpenAI.Interfaces;
 using OpenAI.Managers;
 using OpenAI.ObjectModels;
 using OpenAI.ObjectModels.RequestModels;
 using QCBSdk;
 using QCBSdk.Types;
+using System.Net;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -24,28 +28,42 @@ namespace QBot
 
         internal static QCBClient BotClient = new QCBClient(BotAppId, BotToken, BotSecret, true);
 
+        
         static OpenAIService openAiService = new OpenAIService(new OpenAiOptions()
         {
             ApiKey = OpenAiApiKey,
         });
+
+        //static IOpenAIService openAiService;
 
         static Dictionary<string, List<ChatMessage>> memberChatMessageListDict = new();
         static Regex atRemoveRegex = new("<@![0-9]+> ");
         static HttpClient imageClient = new HttpClient();
         static async Task Main(string[] args)
         {
+            /*
+            var serviceCollection = new ServiceCollection();
+
+            serviceCollection.AddOpenAIService(settings =>
+                {
+                    settings.ApiKey = OpenAiApiKey;
+
+                }).ConfigureHttpClient(s => new HttpClientHandler
+                {
+                    Proxy = new WebProxy("192.168.10.103:7890"),
+                });
+
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+            openAiService = serviceProvider.GetRequiredService<IOpenAIService>();*/
+
             BotClient.OnAtMessageCreate += BotClient_OnAtMessageCreate;
             await BotClient.InitializeAsync(0 | 1 << 9 | 1 << 27 | 1 << 30);
 
             var guilds = await BotClient.GetBotGuildListAsync();
             var channels = await BotClient.GetChannelListAsync(guilds[0].Id);
             Console.WriteLine(channels.SerializeObject());
-            MessageReference a = new MessageReference()
-            {
-                IgnoreGetMessageError = true,
-                MessageId = "123456787656",
-            };
-            Console.WriteLine(JsonSerializer.Serialize(a, jsonSerializerOptions));
+            
             while (true)
             {
                 await Task.Delay(10000);
@@ -59,6 +77,8 @@ namespace QBot
             string inputContent = atRemoveRegex.Replace(message.Content, "", 1);
             string outputContent = "";
             Console.WriteLine(inputContent);
+
+            /*
             if (inputContent.StartsWith("/image"))
             {
                 var imageResult = await openAiService.Image.CreateImage(new ImageCreateRequest
@@ -81,13 +101,13 @@ namespace QBot
                         await BotClient.SendMessageAsync(message.ChannelId, new RequestTypes.SendMessageRequest()
                         {
                             MsgId = message.Id,
-                            /*
+                            
                             MessageReference = new MessageReference()
                             {
                                 IgnoreGetMessageError = true,
                                 MessageId = message.Id,
                             },
-                            */
+                            
                         }, fs, path);
                     }
                 }
@@ -101,7 +121,7 @@ namespace QBot
                 }
                 return;
             }
-
+            */
 
             if (!memberChatMessageListDict.ContainsKey(message.Author.Id))
             {

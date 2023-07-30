@@ -140,7 +140,7 @@ namespace QCBSdk
                     string? content = await ClientWebSocketReceiveString();
                     if (string.IsNullOrEmpty(content))
                         continue;
-                    Console.WriteLine(content);
+                    //Console.WriteLine(content);
                     var message = JsonSerializer.Deserialize<WebSocketMessage>(content);
                     switch (message?.op)
                     {
