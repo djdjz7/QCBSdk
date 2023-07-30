@@ -2,14 +2,18 @@
 {
     public class ResponseTypes
     {
-        public class GetChannelOnlineCountResponse
+        internal class GetChannelOnlineCountResponse
         {
             public int? OnlineNums { get; set; }
         }
-        public class GetWssGatewayResponse
+        internal class GetWssGatewayResponse
         {
             public string? Url { get; set; }
         }
+
+        /// <summary>
+        /// 请求错误响应
+        /// </summary>
         public class RequestErrorResponse
         {
                 public int Code { get; set; }
@@ -17,7 +21,7 @@
                 public object Data { get; set; }
         }
 
-        public class Data
+        public class MessageAuditData
         {
             public MessageAudit MessageAudit { get; set; }
         }

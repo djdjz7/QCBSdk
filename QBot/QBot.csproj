@@ -11,6 +11,9 @@
     <None Remove="Properties\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Betalgo.OpenAI" Version="7.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\QCBSdk\QCBSdk.csproj" />
   </ItemGroup>
 </Project>

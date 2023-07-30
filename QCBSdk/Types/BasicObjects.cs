@@ -8,14 +8,41 @@ namespace QCBSdk.Types
     /// </summary>
     public class Guild
     {
+        /// <summary>
+        /// 频道 ID
+        /// </summary>
         public string? Id { get; set; } = null;
+        /// <summary>
+        /// 频道名称
+        /// </summary>
         public string? Name { get; set; } = null;
+        /// <summary>
+        /// 频道头像地址
+        /// </summary>
         public string? Icon { get; set; } = null;
+        /// <summary>
+        /// 创建人用户 ID
+        /// </summary>
         public string? OwnerId { get; set; } = null;
+        /// <summary>
+        /// 当前人是否是创建人
+        /// </summary>
         public bool? Owner { get; set; } = null;
+        /// <summary>
+        /// 加入时间
+        /// </summary>
         public DateTime? JoinedAt { get; set; } = null;
+        /// <summary>
+        /// 成员数
+        /// </summary>
         public int? MemberCount { get; set; } = null;
+        /// <summary>
+        /// 最大成员数
+        /// </summary>
         public int? MaxMembers { get; set; } = null;
+        /// <summary>
+        /// 描述
+        /// </summary>
         public string? Description { get; set; } = null;
     }
     /// <summary>
