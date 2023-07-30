@@ -17,7 +17,7 @@
                 public object Data { get; set; }
         }
 
-        public class Data
+        public class MessageAuditData
         {
             public MessageAudit MessageAudit { get; set; }
         }

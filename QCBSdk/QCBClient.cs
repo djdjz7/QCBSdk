@@ -13,6 +13,9 @@ using static QCBSdk.Utils;
 
 namespace QCBSdk
 {
+    /// <summary>
+    /// 机器人客户端
+    /// </summary>
     public partial class QCBClient
     {
         private string appId;
@@ -22,7 +25,7 @@ namespace QCBSdk
         private string? gateway;
         private Timer? heartbeatTimer;
         private HttpClient httpClient = new HttpClient();
-        public ClientWebSocket clientWebSocket = new ClientWebSocket();
+        internal ClientWebSocket clientWebSocket = new ClientWebSocket();
         private JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
         {
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
@@ -30,7 +33,7 @@ namespace QCBSdk
             DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         };
 
-        public int? latestS = null;
+        private int? latestS = null;
 
         /// <summary>
         /// 实例化一个机器人客户端
@@ -326,6 +329,7 @@ namespace QCBSdk
             return response?.Url;
         }
 
+        
         public async Task<Message?> SendMessageAsync(string channelId, SendMessageRequest sendMessageRequest)
         {
             var response = await httpClient.PostAsJsonAsync($"/channels/{channelId}/messages", sendMessageRequest, jsonSerializerOptions);
@@ -369,9 +373,9 @@ namespace QCBSdk
             return message;
         }
 
-        public void ActionsInvoker(string action, JsonElement data)
+        internal void ActionsInvoker(string type, JsonElement data)
         {
-            switch (action)
+            switch (type)
             {
                 case "MESSAGE_CREATE":
                     if (OnMessageCreate is null)
@@ -382,15 +386,17 @@ namespace QCBSdk
                     OnMessageCreate.Invoke(message1);
                     break;
                 case "AT_MESSAGE_CREATE":
-                    if (OnMessageCreate is null)
+                    if (OnAtMessageCreate is null)
                         return;
                     var message2 = data.Deserialize<Message>(jsonSerializerOptions);
                     if (message2 is null)
                         return;
-                    OnMessageCreate.Invoke(message2);
+                    OnAtMessageCreate.Invoke(message2);
                     break;
 
                 default:
+                    if(OnUnknownWebSocketMessageReceived is not null)
+                        OnUnknownWebSocketMessageReceived.Invoke()
                     break;
             }
         }
